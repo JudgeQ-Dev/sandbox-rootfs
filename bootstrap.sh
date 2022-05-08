@@ -48,6 +48,20 @@ mkdir -p "$ROOTFS_PATH"
 
 debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
+QEMU_ARCH=""
+
+if [[ "${ARCH}" == "amd64" ]]; then
+    QEMU_ARCH="x86_64"
+elif [[ "${ARCH}" == "arm64" ]]; then
+    QEMU_ARCH="aarch64"
+else
+    QEMU_ARCH="${ARCH}"
+fi
+
+cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
+arch-chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
+
 cp "$INSTALL_SCRIPT" "$ROOTFS_PATH/root"
 arch-chroot "$ROOTFS_PATH" "/root/$INSTALL_SCRIPT"
+
 rm "$ROOTFS_PATH/root/$INSTALL_SCRIPT"
