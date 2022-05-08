@@ -1,8 +1,10 @@
 #! /bin/bash
 
+TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
 INSTALL_SCRIPT="install.sh"
 
-cd "$(dirname "$0")"
+cd "${TOP_DIR}"
 
 set -e
 
