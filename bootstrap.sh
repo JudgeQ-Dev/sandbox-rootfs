@@ -59,7 +59,7 @@ else
 fi
 
 cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
-arch-chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
+chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 
 cp "${INSTALL_SCRIPT}" "${ROOTFS_PATH}/root"
 arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT}"
