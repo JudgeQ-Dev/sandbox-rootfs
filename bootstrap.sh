@@ -26,12 +26,12 @@ if ! debootstrap --version >/dev/null 2>&1; then
     exit 1
 fi
 
-if [[ "${ROOTFS_PATH}" == "" ]]; then
+if [[ -z "${ROOTFS_PATH}" ]]; then
     echo "Please specify the path to put rootfs on with ROOTFS_PATH."
     exit 1
 fi
 
-# if [[ "$MIRROR" == "" ]]; then
+# if [[ -z "${MIRROR}" ]]; then
 #     MIRROR="http://mirrors.tuna.tsinghua.edu.cn/ubuntu"
 # fi
 
