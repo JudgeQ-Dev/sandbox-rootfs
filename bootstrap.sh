@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# binfmt-support qemu qemu-user-static debootstrap arch-install-scripts
+
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 INSTALL_SCRIPT="install.sh"
