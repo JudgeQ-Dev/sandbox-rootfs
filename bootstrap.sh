@@ -10,7 +10,7 @@ cd "${TOP_DIR}"
 
 set -e
 
-if [[ "$UID" != "0" ]]; then
+if [[ "${UID}" != "0" ]]; then
     echo This script must be run with root privileges.
     exit 1
 fi
@@ -26,7 +26,7 @@ if ! debootstrap --version >/dev/null 2>&1; then
     exit 1
 fi
 
-if [[ "$ROOTFS_PATH" == "" ]]; then
+if [[ "${ROOTFS_PATH}" == "" ]]; then
     echo "Please specify the path to put rootfs on with ROOTFS_PATH."
     exit 1
 fi
@@ -43,8 +43,8 @@ if [[ -z "${DEBIAN_TAG}" ]]; then
     DEBIAN_TAG="focal"
 fi
 
-rm -rf "$ROOTFS_PATH"
-mkdir -p "$ROOTFS_PATH"
+rm -rf "${ROOTFS_PATH}"
+mkdir -p "${ROOTFS_PATH}"
 
 debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
@@ -61,7 +61,7 @@ fi
 cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
 arch-chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 
-cp "$INSTALL_SCRIPT" "$ROOTFS_PATH/root"
-arch-chroot "$ROOTFS_PATH" "/root/$INSTALL_SCRIPT"
+cp "${INSTALL_SCRIPT}" "${ROOTFS_PATH}/root"
+arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT}"
 
-rm "$ROOTFS_PATH/root/$INSTALL_SCRIPT"
+rm "${ROOTFS_PATH}/root/${INSTALL_SCRIPT}"
