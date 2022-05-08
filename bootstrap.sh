@@ -46,7 +46,7 @@ fi
 rm -rf "$ROOTFS_PATH"
 mkdir -p "$ROOTFS_PATH"
 
-debootstrap --arch="${ARCH}" --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
+debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
 cp "$INSTALL_SCRIPT" "$ROOTFS_PATH/root"
 arch-chroot "$ROOTFS_PATH" "/root/$INSTALL_SCRIPT"
