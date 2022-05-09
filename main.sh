@@ -14,6 +14,8 @@ IMAGE_NAME="${TARGET}-build"
 # shellcheck disable=SC2001
 RUNNER_NAME=$(echo "${TARGET}" | sed 's/[^a-zA-Z0-9\-_]/-/g')
 
+echo "${TARGET}"
+
 # Build the builder
 docker build \
     --build-arg TARGET="${TARGET}" \
