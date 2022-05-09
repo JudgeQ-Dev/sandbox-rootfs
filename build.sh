@@ -12,5 +12,5 @@ amd64 \
 for arch in ${ARCH_LIST}; do
     export ARCH="${arch}"
     export ROOTFS_PATH="${ROOTFS_ROOT_PATH}/${DEBIAN_LONG_VERSION}_${ARCH}"
-    bash "${BOOTSTRAP_SCRIPT}"
+    sudo bash "${BOOTSTRAP_SCRIPT}"
 done
