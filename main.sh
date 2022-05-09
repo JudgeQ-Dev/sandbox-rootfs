@@ -1,4 +1,6 @@
-#!/bin/bash -eu
+#! /bin/bash
+
+set -e
 
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
@@ -13,7 +15,10 @@ IMAGE_NAME="${TARGET}-build"
 RUNNER_NAME=$(echo "${TARGET}" | sed 's/[^a-zA-Z0-9\-_]/-/g')
 
 # Build the builder
-docker build -t "${IMAGE_NAME}" -f docker.build/Dockerfile .
+docker build \
+    --build-arg TARGET="${TARGET}" \
+    -t "${IMAGE_NAME}" \
+    -f docker.build/Dockerfile .
 
 # Build chroot
 docker rm -f "${RUNNER_NAME}" >/dev/null 2>&1 || true
