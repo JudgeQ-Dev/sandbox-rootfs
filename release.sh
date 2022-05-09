@@ -6,7 +6,7 @@ if ! zstd -h >/dev/null 2>&1; then
     apt install zstd
 fi
 
-TARGET_PATH="${TOP_DIR}/sandbox-rootfs"
+TARGET_PATH="${TOP_DIR}/rootfs-packages"
 
 for DIR in "${TOP_DIR}"/rootfs/*; do
     if [[ ! -d "${DIR}" ]]; then
@@ -15,5 +15,5 @@ for DIR in "${TOP_DIR}"/rootfs/*; do
 
     DIR_NAME=$(basename "${DIR}")
 
-    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/sandbox-rootfs_${DIR_NAME}".tar.zst "${DIR}"
+    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "${DIR}"
 done

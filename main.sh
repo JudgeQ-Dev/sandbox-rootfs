@@ -2,6 +2,7 @@
 
 set -e
 
+# shellcheck disable=SC2034
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 if [ "$#" -ne 1 ]; then
@@ -31,8 +32,9 @@ docker run \
     --name="${RUNNER_NAME}" \
     "${IMAGE_NAME}"
 
-docker cp -a "${RUNNER_NAME}:/root/rootfs" ./
+rm -rf "${TOP_DIR}"/rootfs-packages
+mkdor "${TOP_DIR}"/rootfs-packages
+
+docker cp "${RUNNER_NAME}:/root/rootfs-packages/*" "${TOP_DIR}"/rootfs-packages
 docker rm -f "${RUNNER_NAME}"
 docker rmi "${IMAGE_NAME}-build"
-
-bash "${TOP_DIR}"/release.sh
