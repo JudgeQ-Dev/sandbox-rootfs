@@ -8,7 +8,7 @@ fi
 
 TARGET_PATH="${TOP_DIR}/sandbox-rootfs"
 
-for DIR in "${TOP_DIR}"/install/*; do
+for DIR in "${TOP_DIR}"/rootfs/*; do
     if [[ ! -d "${DIR}" ]]; then
         continue
     fi
