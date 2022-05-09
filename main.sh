@@ -32,9 +32,6 @@ docker run \
     --name="${RUNNER_NAME}" \
     "${IMAGE_NAME}"
 
-rm -rf "${TOP_DIR}"/rootfs-packages
-mkdor "${TOP_DIR}"/rootfs-packages
-
 docker cp "${RUNNER_NAME}:/root/rootfs-packages/*" "${TOP_DIR}"/rootfs-packages
 docker rm -f "${RUNNER_NAME}"
 docker rmi "${IMAGE_NAME}-build"
