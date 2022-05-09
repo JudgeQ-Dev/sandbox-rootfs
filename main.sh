@@ -31,7 +31,7 @@ docker run \
     --name="${RUNNER_NAME}" \
     "${IMAGE_NAME}"
 
-docker cp -a "${RUNNER_NAME}:/rootfs" ./
+docker cp -a "${RUNNER_NAME}:/root/rootfs" ./
 docker rm -f "${RUNNER_NAME}"
 docker rmi "${IMAGE_NAME}-build"
 
