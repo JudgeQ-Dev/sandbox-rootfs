@@ -8,6 +8,7 @@ COPY . /root/
 ENV DEBIAN_FRONTEND=noninteractive
 ENV INSTALL_DEBOOTSTRAP_DEPS=true
 ENV DEBIAN_TAG=focal
+ENV ROOTFS_PATH=/root/rootfs
 
 RUN bash bootstrap.sh
 
