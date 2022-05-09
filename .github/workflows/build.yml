@@ -40,9 +40,9 @@ jobs:
 
       - name: debootstrap
         run: |
-          source ./${{ github.event.inputs.tag }}/env.sh
-          bash build.sh
-          bash release.sh
+          sudo source ./${{ github.event.inputs.tag }}/env.sh
+          sudo bash build.sh
+          sudo bash release.sh
 
       - name: upload artifact
         uses: actions/upload-artifact@v3
