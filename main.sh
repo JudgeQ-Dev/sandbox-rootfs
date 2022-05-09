@@ -34,4 +34,4 @@ docker run \
 
 docker cp -a "${RUNNER_NAME}:/root/rootfs-packages" "${TOP_DIR}"/
 docker rm -f "${RUNNER_NAME}"
-docker rmi "${IMAGE_NAME}-build"
+docker rmi "${IMAGE_NAME}"
