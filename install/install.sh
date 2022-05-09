@@ -3,6 +3,9 @@
 # Fix PATH environment variable
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+export DEBIAN_FRONTEND=noninteractive
+export TERM=xterm-256color
+
 # Set Locale
 sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen

@@ -47,9 +47,9 @@ fi
 #     MIRROR="http://mirrors.tuna.tsinghua.edu.cn/ubuntu"
 # fi
 
-if [[ -z "${ARCH}" ]]; then
-    ARCH="amd64"
-fi
+# if [[ -z "${ARCH}" ]]; then
+#     ARCH="amd64"
+# fi
 
 if [[ -z "${DEBIAN_TAG}" ]]; then
     DEBIAN_TAG="focal"
