@@ -40,7 +40,7 @@ jobs:
 
       - name: debootstrap
         run: |
-          sudo source ./${{ github.event.inputs.tag }}/env.sh
+          source ./${{ github.event.inputs.tag }}/env.sh
           sudo bash build.sh
           sudo bash release.sh
 
