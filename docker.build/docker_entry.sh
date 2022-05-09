@@ -6,7 +6,7 @@ set -e -x
 
 if [ X"${1}" = X"primary" ]; then
     # shellcheck disable=SC1091
-    . "${TOP_DIR}"/env.sh
+    source "${TOP_DIR}"/env.sh
     bash "${TOP_DIR}"/build.sh
     bash "${TOP_DIR}"/release.sh
 else
