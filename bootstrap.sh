@@ -1,6 +1,9 @@
 #! /bin/bash
 
-# binfmt-support qemu qemu-user-static debootstrap arch-install-scripts
+# arch-install-scripts debootstrap
+
+# multiarch build deps
+# binfmt-support qemu qemu-user-static
 
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
@@ -13,6 +16,14 @@ set -e
 if [[ "${UID}" != "0" ]]; then
     echo This script must be run with root privileges.
     exit 1
+fi
+
+if [[ -n "${INSTALL_DEBOOTSTRAP_DEPS}" ]]; then
+    sudo apt update
+    sudo apt dist-upgrade -y
+    sudo apt install --no-install-recommends --no-install-suggests -y \
+        arch-install-scripts \
+        debootstrap
 fi
 
 if ! arch-chroot -h >/dev/null 2>&1; then
@@ -46,20 +57,22 @@ fi
 rm -rf "${ROOTFS_PATH}"
 mkdir -p "${ROOTFS_PATH}"
 
-debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
+# debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
-QEMU_ARCH=""
+debootstrap --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
-if [[ "${ARCH}" == "amd64" ]]; then
-    QEMU_ARCH="x86_64"
-elif [[ "${ARCH}" == "arm64" ]]; then
-    QEMU_ARCH="aarch64"
-else
-    QEMU_ARCH="${ARCH}"
-fi
+# QEMU_ARCH=""
 
-cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
-chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
+# if [[ "${ARCH}" == "amd64" ]]; then
+#     QEMU_ARCH="x86_64"
+# elif [[ "${ARCH}" == "arm64" ]]; then
+#     QEMU_ARCH="aarch64"
+# else
+#     QEMU_ARCH="${ARCH}"
+# fi
+
+# cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
+# chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 
 cp "${INSTALL_SCRIPT}" "${ROOTFS_PATH}/root"
 arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT}"
