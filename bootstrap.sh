@@ -47,9 +47,9 @@ fi
 #     MIRROR="http://mirrors.tuna.tsinghua.edu.cn/ubuntu"
 # fi
 
-# if [[ -z "${ARCH}" ]]; then
-#     ARCH="amd64"
-# fi
+if [[ -z "${ARCH}" ]]; then
+    ARCH="amd64"
+fi
 
 if [[ -z "${DEBIAN_TAG}" ]]; then
     DEBIAN_TAG="focal"
@@ -58,22 +58,20 @@ fi
 rm -rf "${ROOTFS_PATH}"
 mkdir -p "${ROOTFS_PATH}"
 
-# debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
+debootstrap --arch="${ARCH}" --foreign --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
 
-debootstrap --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRROR}"
+QEMU_ARCH=""
 
-# QEMU_ARCH=""
+if [[ "${ARCH}" == "amd64" ]]; then
+    QEMU_ARCH="x86_64"
+elif [[ "${ARCH}" == "arm64" ]]; then
+    QEMU_ARCH="aarch64"
+else
+    QEMU_ARCH="${ARCH}"
+fi
 
-# if [[ "${ARCH}" == "amd64" ]]; then
-#     QEMU_ARCH="x86_64"
-# elif [[ "${ARCH}" == "arm64" ]]; then
-#     QEMU_ARCH="aarch64"
-# else
-#     QEMU_ARCH="${ARCH}"
-# fi
-
-# cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
-# chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
+cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
+chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 
 cp -r "${TOP_DIR}/${INSTALL_SCRIPT_PATH}" "${ROOTFS_PATH}/root/"
 arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT_PATH}/${INSTALL_SCRIPT}"
