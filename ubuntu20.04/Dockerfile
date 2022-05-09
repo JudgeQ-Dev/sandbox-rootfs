@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 USER root
 WORKDIR /root/
 
-COPY ./rootfs/* /root/rootfs/
+COPY ./rootfs /root/
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM xterm-256color
