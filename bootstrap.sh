@@ -76,4 +76,4 @@ chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 cp -r "${TOP_DIR}/${INSTALL_SCRIPT_PATH}" "${ROOTFS_PATH}/root/"
 arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT_PATH}/${INSTALL_SCRIPT}"
 
-rm "${ROOTFS_PATH}/root/${INSTALL_SCRIPT}"
+rm -rf "${ROOTFS_PATH}/root/${INSTALL_SCRIPT_PATH}"
