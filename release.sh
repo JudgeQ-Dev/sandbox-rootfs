@@ -24,7 +24,7 @@ for DIR in "${TOP_DIR}"/rootfs/*; do
 
     mv "${DIR_NAME}" "rootfs"
 
-    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "./rootfs"
+    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/sandbox-rootfs_${DIR_NAME}".tar.zst "./rootfs"
 
     mv "rootfs" "${DIR_NAME}"
 done

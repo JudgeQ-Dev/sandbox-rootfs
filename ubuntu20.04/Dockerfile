@@ -3,13 +3,11 @@ FROM ubuntu:20.04
 USER root
 WORKDIR /root/
 
-COPY . /root/
+COPY ./rootfs /root/
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV INSTALL_DEBOOTSTRAP_DEPS=true
-ENV DEBIAN_TAG=focal
-ENV ROOTFS_PATH=/root/rootfs
+ENV TERM xterm-256color
 
-RUN bash bootstrap.sh
+RUN mv "./rootfs/ubuntu20.04_$(dpkg --print-architecture)" /rootfs
 
 CMD ["/bin/bash"]
