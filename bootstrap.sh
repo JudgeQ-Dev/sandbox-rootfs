@@ -20,9 +20,9 @@ if [[ "${UID}" != "0" ]]; then
 fi
 
 if [[ -n "${INSTALL_DEBOOTSTRAP_DEPS}" ]]; then
-    sudo apt update
-    sudo apt dist-upgrade -y
-    sudo apt install --no-install-recommends --no-install-suggests -y \
+    apt update
+    apt dist-upgrade -y
+    apt install --no-install-recommends --no-install-suggests -y \
         arch-install-scripts \
         debootstrap
 fi
