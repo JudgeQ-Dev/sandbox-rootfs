@@ -40,7 +40,7 @@ jobs:
 
       - name: debootstrap
         run: |
-          bash main.sh
+          bash main.sh ${{ github.event.inputs.tag }}
 
       - name: upload artifact
         uses: actions/upload-artifact@v3
