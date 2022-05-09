@@ -45,6 +45,7 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v3
         with:
+          name: rootfs-packages
           path: rootfs-packages/rootfs*
 
       # - name: Login to Docker Hub
