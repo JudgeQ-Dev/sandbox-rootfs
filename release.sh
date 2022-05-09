@@ -6,6 +6,8 @@ if ! zstd -h >/dev/null 2>&1; then
     apt install zstd
 fi
 
+cd "${TOP_DIR}" || exit 1
+
 TARGET_PATH="${TOP_DIR}/rootfs-packages"
 
 rm -rf "${TARGET_PATH}"
@@ -18,5 +20,5 @@ for DIR in "${TOP_DIR}"/rootfs/*; do
 
     DIR_NAME=$(basename "${DIR}")
 
-    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "${DIR}"
+    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "./rootfs/${DIR_NAME}"
 done
