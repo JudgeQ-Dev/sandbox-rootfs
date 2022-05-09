@@ -4,6 +4,7 @@ TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 if [ "$#" -ne 1 ]; then
     echo "Usage $0 <target>"
+    exit 1
 fi
 
 TARGET="${1}"
