@@ -51,6 +51,5 @@ jobs:
           file: ./${{ github.event.inputs.tag }}/Dockerfile
           platforms: linux/amd64
           push: true
-          allow:
-            - security.insecure
+          allow: security.insecure
           tags: judgeq/sandbox-rootfs:${{ github.event.inputs.tag }}
