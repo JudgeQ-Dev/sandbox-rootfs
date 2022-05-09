@@ -14,8 +14,8 @@ COPY . /root/
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install required packages for build of sandbox-rootfs
-RUN apt update &&
-    apt install --no-install-recommends --no-install-suggests -y \
+RUN apt update \
+    && apt install --no-install-recommends --no-install-suggests -y \
         git \
         zip \
         unzip \
@@ -26,9 +26,9 @@ RUN apt update &&
         ca-certificates \
         gnupg2 \
         arch-install-scripts debootstrap \
-        binfmt-support qemu qemu-user-static &&
-    cp ./${TARGET}/env.sh /root/env.sh &&
-    cp ./docker.build/docker_entry.sh /root/docker_entry.sh
+        binfmt-support qemu qemu-user-static \
+    && cp ./${TARGET}/env.sh /root/env.sh \
+    && cp ./docker.build/docker_entry.sh /root/docker_entry.sh
 
 ENTRYPOINT ["/root/docker_entry.sh"]
 
