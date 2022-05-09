@@ -26,8 +26,8 @@ RUN apt update \
         gnupg2 \
         arch-install-scripts debootstrap \
         binfmt-support qemu qemu-user-static \
-    && cp ./${TARGET}/env.sh ./env.sh \
-    && cp ./docker.build/docker_entry.sh ./docker_entry.sh
+    && cp ./${TARGET}/env.sh /root/env.sh \
+    && cp ./docker.build/docker_entry.sh /root/docker_entry.sh
 
 ENTRYPOINT ["/root/docker_entry.sh"]
 
