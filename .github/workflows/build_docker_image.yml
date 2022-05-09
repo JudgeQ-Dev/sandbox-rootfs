@@ -29,6 +29,8 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
+        with:
+          driver: docker
 
       - name: Inspect builder
         run: |
