@@ -13,6 +13,8 @@ TARGET_PATH="${TOP_DIR}/rootfs-packages"
 rm -rf "${TARGET_PATH}"
 mkdir "${TARGET_PATH}"
 
+cd "./rootfs" || exit 1
+
 for DIR in "${TOP_DIR}"/rootfs/*; do
     if [[ ! -d "${DIR}" ]]; then
         continue
@@ -20,5 +22,11 @@ for DIR in "${TOP_DIR}"/rootfs/*; do
 
     DIR_NAME=$(basename "${DIR}")
 
-    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "./rootfs/${DIR_NAME}"
+    mv "${DIR_NAME}" "rootfs"
+
+    tar --use-compress-program=zstd -cvf "${TARGET_PATH}/rootfs_${DIR_NAME}".tar.zst "./rootfs"
+
+    mv "rootfs" "${DIR_NAME}"
 done
+
+cd "${TOP_DIR}" || exit 1
