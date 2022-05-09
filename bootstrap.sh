@@ -7,6 +7,7 @@
 
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
+INSTALL_SCRIPT_PATH="install"
 INSTALL_SCRIPT="install.sh"
 
 cd "${TOP_DIR}"
@@ -74,7 +75,7 @@ debootstrap --components=main,universe "${DEBIAN_TAG}" "${ROOTFS_PATH}" "${MIRRO
 # cp "$(which qemu-"${QEMU_ARCH}"-static)" "${ROOTFS_PATH}"/usr/bin/
 # chroot "${ROOTFS_PATH}" /debootstrap/debootstrap --second-stage
 
-cp "${INSTALL_SCRIPT}" "${ROOTFS_PATH}/root"
-arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT}"
+cp -r "${TOP_DIR}/${INSTALL_SCRIPT_PATH}" "${ROOTFS_PATH}/root/"
+arch-chroot "${ROOTFS_PATH}" "/root/${INSTALL_SCRIPT_PATH}/${INSTALL_SCRIPT}"
 
 rm "${ROOTFS_PATH}/root/${INSTALL_SCRIPT}"
