@@ -36,7 +36,9 @@ apt-get install -y \
     locales \
     unzip \
     zip \
-    git
+    git \
+    lsb-release \
+    software-properties-common
 
 export GCC_VERSION=11
 bash "${TOP_DIR}"/install_gcc.sh
