@@ -16,17 +16,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install required packages for build of sandbox-rootfs
 RUN apt update \
     && apt install --no-install-recommends --no-install-suggests -y \
-        git \
-        zip \
-        unzip \
-        zstd \
-        lsb-release \
-        debootstrap \
-        sudo \
-        ca-certificates \
-        gnupg2 \
-        arch-install-scripts debootstrap \
-        binfmt-support qemu qemu-user-static \
+    git \
+    zip \
+    unzip \
+    zstd \
+    lsb-release \
+    debootstrap \
+    sudo \
+    ca-certificates \
+    gnupg2 \
+    arch-install-scripts debootstrap \
+    binfmt-support qemu qemu-user-static \
     && cp ./${TARGET}/env.sh /root/env.sh \
     && cp ./docker.build/docker_entry.sh /root/docker_entry.sh
 

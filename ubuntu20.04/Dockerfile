@@ -10,8 +10,8 @@ ENV TERM xterm-256color
 
 RUN apt update \
     && apt install --no-install-recommends --no-install-suggests -y \
-        arch-install-scripts \
-        zstd \
+    arch-install-scripts \
+    zstd \
     && ARCH=$(dpkg --print-architecture) \
     && ORIGIN_NAME="sandbox-rootfs_ubuntu20.04_${ARCH}" \
     && ORIGIN="${ORIGIN_NAME}.tar.zst" \
