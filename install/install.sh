@@ -57,8 +57,8 @@ echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" >/etc
 # Install some language support via APT
 apt-get update
 apt-get install -y \
-    g++-10-multilib \
-    gcc-10-multilib \
+    g++-11-multilib \
+    gcc-11-multilib \
     clang-11 \
     libc++-11-dev \
     libc++abi-11-dev \
