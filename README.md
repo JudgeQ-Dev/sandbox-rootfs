@@ -2,8 +2,8 @@
 
 This is the sandbox's rootfs used by [JudgeQ-judge](https://github.com/judgeq-dev/judge). It's based on Ubuntu 20.04 and contains compilers (and interpreters) below:
 
-* GCC 10
-* Clang 11 (from [LLVM](https://apt.llvm.org/))
+* GCC 11 (from [PPA](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test))
+* Clang 14 (from [LLVM](https://apt.llvm.org/))
 * OpenJDK 11
 * Kotlin (from [SDKMAN!](https://kotlinlang.org/docs/tutorials/command-line.html))
 * Free Pascal 3
