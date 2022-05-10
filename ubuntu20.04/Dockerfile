@@ -12,11 +12,12 @@ RUN apt update \
     && apt install --no-install-recommends --no-install-suggests -y \
         arch-install-scripts \
         zstd \
-    && ls \
     && ARCH=$(dpkg --print-architecture) \
-    && TARGET_NAME="sandbox-rootfs_ubuntu20.04_${ARCH}" \
-    && TARGET="${TARGET_NAME}.tar.zst" \
-    && tar --use-compress-program=unzstd -xvf /root/${TARGET} -C / \
-    && rm -rf /root/*
+    && ORIGIN_NAME="sandbox-rootfs_ubuntu20.04_${ARCH}" \
+    && ORIGIN="${ORIGIN_NAME}.tar.zst" \
+    && TARGET="sandbox-rootfs.tar.zst" \
+    && rm -rf $(ls /root | grep -v "${TARGET}") \
+    && echo "tar --use-compress-program=unzstd -xvf /root/${TARGET} -C /" >> /root/init.sh \
+    && chmod +x /root/init.sh
 
 CMD ["/bin/bash"]
