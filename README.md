@@ -9,7 +9,7 @@ This is the sandbox's rootfs used by [JudgeQ-judge](https://github.com/judgeq-de
 * Free Pascal 3
 * Python 2.7 (from [PPA](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa))
 * Python 3.6
-* Python 3.9 (from [PPA](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa))
+* Python 3.10 (from [PPA](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa))
 * Swift (from [Swift.org](https://swift.org/))
 * Rust (from [Rustup](https://rustup.rs/))
 * Go (from [PPA](https://launchpad.net/~longsleep/+archive/ubuntu/golang-backports))
