@@ -16,6 +16,7 @@ RUN apt update \
     && ORIGIN_NAME="sandbox-rootfs_ubuntu20.04_${ARCH}" \
     && ORIGIN="${ORIGIN_NAME}.tar.zst" \
     && TARGET="sandbox-rootfs.tar.zst" \
+    $$ mv "${ORIGIN}" "${TARGET}" \
     && rm -rf $(ls /root | grep -v "${TARGET}") \
     && echo "tar --use-compress-program=unzstd -xvf /root/${TARGET} -C /" >> /root/init.sh \
     && chmod +x /root/init.sh
