@@ -88,8 +88,6 @@ wget -O - "$SWIFT_URL" | tar -xzf - -C /opt
 mv /opt/swift* /opt/swift
 
 # Create symlinks for compilers and interpreters with non-common names and locations
-ln -s /usr/bin/g++-10 /usr/local/bin/g++
-ln -s /usr/bin/gcc-10 /usr/local/bin/gcc
 ln -s /sandbox/.sdkman/candidates/kotlin/current/bin/kotlin /usr/local/bin/kotlin
 ln -s /sandbox/.sdkman/candidates/kotlin/current/bin/kotlinc /usr/local/bin/kotlinc
 ln -s /sandbox/.cargo/bin/rustc /usr/local/bin/rustc
