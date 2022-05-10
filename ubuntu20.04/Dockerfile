@@ -15,8 +15,8 @@ RUN apt update \
     && ls \
     && ARCH=$(dpkg --print-architecture) \
     && TARGET_NAME="sandbox-rootfs_ubuntu20.04_${ARCH}" \
-    && TARGET="${TARGET_NAME}.tar.zst" \
-    && tar --use-compress-program=unzstd -xvf /root/rootfs-packages/${TARGET} -C / \
-    && rm -rf /root/*
+    && TARGET="${TARGET_NAME}.tar.zst" 
+    # && tar --use-compress-program=unzstd -xvf /root/rootfs-packages/${TARGET} -C / \
+    # && rm -rf /root/*
 
 CMD ["/bin/bash"]
