@@ -1,5 +1,7 @@
 #! /bin/bash -e
 
+TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
 # Fix PATH environment variable
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
@@ -24,7 +26,15 @@ sed 's/focal/focal-updates/' <<<"$ORIGINAL_SOURCE" >>/etc/apt/sources.list
 # Install dependencies
 apt-get update
 apt-get dist-upgrade -y
-apt-get install -y gnupg ca-certificates curl wget locales unzip zip git
+apt-get install -y \
+    gnupg \
+    ca-certificates \
+    curl \
+    wget \
+    locales \
+    unzip \
+    zip \
+    git
 
 # Key: LLVM repo
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
@@ -46,7 +56,21 @@ echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" >/etc
 
 # Install some language support via APT
 apt-get update
-apt-get install -y g++-10-multilib gcc-10-multilib clang-11 libc++-11-dev libc++abi-11-dev openjdk-11-jdk fpc python2.7 python3.6 python3.9 golang-go ghc mono-devel fsharp
+apt-get install -y \
+    g++-10-multilib \
+    gcc-10-multilib \
+    clang-11 \
+    libc++-11-dev \
+    libc++abi-11-dev \
+    openjdk-11-jdk \
+    fpc \
+    python2.7 \
+    python3.6 \
+    python3.9 \
+    golang-go \
+    ghc \
+    mono-devel \
+    fsharp
 
 # Install Rust via Rustup
 su sandbox -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
