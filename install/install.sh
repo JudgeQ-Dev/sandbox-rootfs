@@ -1,4 +1,6 @@
-#! /bin/bash -e
+#! /bin/bash
+
+set -e
 
 TOP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
@@ -36,6 +38,12 @@ apt-get install -y \
     zip \
     git
 
+export GCC_VERSION=11
+bash "${TOP_DIR}"/install_gcc.sh
+
+export LLVM_VERSION=14
+bash "${TOP_DIR}"/install_llvm.sh
+
 # Key: Python repo
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776
 # Key: Go repo
@@ -50,13 +58,9 @@ echo "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu focal main"
 echo "deb http://ppa.launchpad.net/hvr/ghc/ubuntu focal main" >/etc/apt/sources.list.d/haskell.list
 echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" >/etc/apt/sources.list.d/mono.list
 
-bash "${TOP_DIR}"/install_llvm.sh
-
 # Install some language support via APT
 apt-get update
 apt-get install -y \
-    g++-11-multilib \
-    gcc-11-multilib \
     gdb \
     openjdk-11-jdk \
     fpc \
