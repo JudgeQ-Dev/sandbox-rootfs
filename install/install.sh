@@ -36,8 +36,6 @@ apt-get install -y \
     zip \
     git
 
-# Key: LLVM repo
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
 # Key: Python repo
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BA6932366A755776
 # Key: Go repo
@@ -47,21 +45,19 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FF3AEACEF6F882
 # Key: Mono repo
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 
-# Add sources
-echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" >/etc/apt/sources.list.d/llvm.list
 echo "deb http://ppa.launchpad.net/deadsnakes/ppa/ubuntu focal main" >/etc/apt/sources.list.d/python.list
 echo "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu focal main" >/etc/apt/sources.list.d/go.list
 echo "deb http://ppa.launchpad.net/hvr/ghc/ubuntu focal main" >/etc/apt/sources.list.d/haskell.list
 echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" >/etc/apt/sources.list.d/mono.list
+
+bash "${TOP_DIR}"/install_llvm.sh
 
 # Install some language support via APT
 apt-get update
 apt-get install -y \
     g++-11-multilib \
     gcc-11-multilib \
-    clang-11 \
-    libc++-11-dev \
-    libc++abi-11-dev \
+    gdb \
     openjdk-11-jdk \
     fpc \
     python2.7 \
@@ -88,8 +84,6 @@ mv /opt/swift* /opt/swift
 # Create symlinks for compilers and interpreters with non-common names and locations
 ln -s /usr/bin/g++-10 /usr/local/bin/g++
 ln -s /usr/bin/gcc-10 /usr/local/bin/gcc
-ln -s /usr/bin/clang-11 /usr/local/bin/clang
-ln -s /usr/bin/clang++-11 /usr/local/bin/clang++
 ln -s /sandbox/.sdkman/candidates/kotlin/current/bin/kotlin /usr/local/bin/kotlin
 ln -s /sandbox/.sdkman/candidates/kotlin/current/bin/kotlinc /usr/local/bin/kotlinc
 ln -s /sandbox/.cargo/bin/rustc /usr/local/bin/rustc
