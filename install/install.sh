@@ -68,6 +68,7 @@ apt-get install -y \
     fpc \
     python2.7 \
     python3.6 \
+    python3.9 \
     python3.10 \
     golang-go \
     ghc \
